@@ -21,7 +21,7 @@ SimpleForm.setup do |config|
     b.use :input, disabled: true, readonly: true
   end
 
-  config.wrappers :default, class: 'input-field',
+  config.wrappers :default, class: 'input-field col s12',
     hint_class: :field_with_hint, error_class: 'has-error' do |b|
     ## Extensions enabled by default
     # Any of these extensions can be disabled for a
