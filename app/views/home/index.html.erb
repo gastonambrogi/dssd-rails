@@ -1,0 +1,6 @@
+<% if current_user %>
+	<h1>Bienvenido, <%= current_user.name %></h1>
+	<%= link_to 'Tus trabajos', controller: 'papers' %>
+<% else %>
+	<h1> Bienvenido! </h1>
+<% end %>
