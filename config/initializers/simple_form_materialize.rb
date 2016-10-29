@@ -1,5 +1,6 @@
 # Use this setup block to configure all options available in SimpleForm.
 SimpleForm.setup do |config|
+
   # Wrappers are used by the form builder to generate a
   # complete input. You can remove any component from the
   # wrapper, change the order or even add your own to the
@@ -47,7 +48,7 @@ SimpleForm.setup do |config|
     b.use :maxlength
 
     # Used for materializeCSS CharacterCounter
-    b.use :length
+    # b.use :length
 
     # Calculates pattern from format validations for string inputs
     b.optional :pattern
@@ -113,7 +114,7 @@ SimpleForm.setup do |config|
   # You can wrap each item in a collection of radio/check boxes with a tag,
   # defaulting to :span. Please note that when using :boolean_style = :nested,
   # SimpleForm will force this option to be a label.
-  # config.item_wrapper_tag = :span
+  config.item_wrapper_tag = :p
 
   # You can define a class to use in all item wrappers. Defaulting to none.
   # config.item_wrapper_class = nil
@@ -187,4 +188,3 @@ SimpleForm.setup do |config|
 
   config.wrapper_mappings = { switch: :material_checkbox }
 end
-

@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+@import "materialize";
+
+.radio_buttons{
+  padding-bottom: 20px;
+}
