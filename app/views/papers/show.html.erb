@@ -1,4 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_paper_path(@paper) %> |
-<%= link_to 'Back', papers_path %>
+<h4>  Titulo </h4>
+<p><%= @paper.title %></p>
+
+<h4>  Autor </h4>
+<p><%= @paper.user.email %></p>
+
+<h4>  Resumen </h4>
+<p><%= @paper.summary %></p>
+
+<h4>  Tema </h4>
+<p><%= @paper.theme %></p>
+
+<h4>  Email personal </h4>
+<p><%= @paper.personal_email %></p>
+
+<h4>  Email de Gmail </h4>
+<p><%= @paper.email %></p>
+
+<h4>  Modo de presentacion </h4>
+<p><%= @paper.presentation %></p>
+
+<h4>  Creado el dia  </h4>
+<p><%= @paper.created_at.strftime('%e/%m/%y %H:%M') %></p>
+
+<%= link_to 'Volver', papers_path, class: "waves-effect waves-light btn" %>

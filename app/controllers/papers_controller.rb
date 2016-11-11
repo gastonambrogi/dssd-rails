@@ -18,10 +18,10 @@ class PapersController < ApplicationController
     @paper = Paper.new
   end
 
-  # GET /papers/1/edit
-  def edit
-    @authors = get_users
-  end
+# GET /papers/1/edit
+#  def edit
+#    @authors = get_users
+#  end
 
   # POST /papers
   # POST /papers.json
@@ -41,30 +41,31 @@ class PapersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /papers/1
-  # PATCH/PUT /papers/1.json
-  def update
-    respond_to do |format|
-      if @paper.update(paper_params)
-        format.html { redirect_to @paper, notice: 'Paper was successfully updated.' }
-        format.json { render :show, status: :ok, location: @paper }
-      else
-        @authors = get_users
-        format.html { render :edit }
-        format.json { render json: @paper.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+# PATCH/PUT /papers/1
+# PATCH/PUT /papers/1.json
+#  def update
+#    respond_to do |format|
+#      if @paper.update(paper_params)
+#        format.html { redirect_to @paper, notice: 'Paper was successfully updated.' }
+#        format.json { render :show, status: :ok, location: @paper }
+#      else
+#        @authors = get_users
+#        format.html { render :edit }
+#        format.json { render json: @paper.errors, status: :unprocessable_entity }
+#      end
+#    end
+#  end
 
-  # DELETE /papers/1
-  # DELETE /papers/1.json
-  def destroy
-    @paper.destroy
-    respond_to do |format|
-      format.html { redirect_to papers_url, notice: 'Paper was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+# DELETE /papers/1
+# DELETE /papers/1.json
+
+#  def destroy
+#    @paper.destroy
+#    respond_to do |format|
+#      format.html { redirect_to papers_url, notice: 'Paper was successfully destroyed.' }
+#      format.json { head :no_content }
+#    end
+#  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

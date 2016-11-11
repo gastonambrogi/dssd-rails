@@ -1,20 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Papers</h1>
+<h1>Listado de Papers</h1>
 
-<table>
+<table class="bordered stripped">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th data-field="title"> Titulo </th>
+      <th data-field="user_id"> Autor </th>
+      <th data-field="summary"> Resumen </th>
+      <th data-field="theme"> Tema </th>
+      <th data-field="personal_email"> Email personal </th>
+      <th data-field="email"> Email de Gmail </th>
+      <th data-field="presentation"> Modo de presentacion </th>
+      <th data-field="created_at"> Creado el dia  </th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @papers.each do |paper| %>
       <tr>
-        <td><%= link_to 'Show', paper %></td>
-        <td><%= link_to 'Edit', edit_paper_path(paper) %></td>
-        <td><%= link_to 'Destroy', paper, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= paper.title %></td>
+        <td><%= paper.user.email %></td>
+        <td><%= paper.summary %></td>
+        <td><%= paper.theme %></td>
+        <td><%= paper.personal_email %></td>
+        <td><%= paper.email %></td>
+        <td><%= paper.presentation %></td>
+        <td><%= paper.created_at.strftime('%e/%m/%y %H:%M') %></td>
+        <td>
+          <%= link_to paper, class: "waves-effect waves-light btn" do %>
+            Ver
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +40,4 @@
 
 <br>
 
-<%= link_to 'New Paper', new_paper_path %>
+<%= link_to 'Crear Paper', new_paper_path, class: "waves-effect waves-light btn" %>
