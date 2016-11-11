@@ -49,6 +49,7 @@ test:
 #
 production:
   <<: *default
+  url: mysql://efznafexqn89wmsa:rs6xbekvizjcgvv5@nj5rh9gto1v5n05t.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/j5kn6lfof71glpzr
   host: nj5rh9gto1v5n05t.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
   database: j5kn6lfof71glpzr
   username: efznafexqn89wmsa
