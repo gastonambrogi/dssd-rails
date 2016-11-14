@@ -8,6 +8,7 @@ class CreatePapers < ActiveRecord::Migration[5.0]
       t.string :personal_email
       t.string :email
       t.string :presentation
+      t.boolean :evaluated, default: false
 
       t.timestamps
     end

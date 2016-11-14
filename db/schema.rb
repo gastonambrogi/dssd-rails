@@ -28,8 +28,9 @@ ActiveRecord::Schema.define(version: 20161114193809) do
     t.string   "personal_email"
     t.string   "email"
     t.string   "presentation"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.boolean  "evaluated",                    default: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.integer  "document_id"
     t.index ["document_id"], name: "index_papers_on_document_id", using: :btree
     t.index ["user_id"], name: "index_papers_on_user_id", using: :btree
