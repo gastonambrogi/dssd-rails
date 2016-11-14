@@ -1,5 +1,5 @@
 class PapersController < ApplicationController
-  before_action :set_paper, only: [:show, :edit, :update, :destroy]
+  before_action :set_paper, only: [:show, :edit, :update, :destroy, :approved]
 
   # GET /papers
   # GET /papers.json
@@ -41,6 +41,10 @@ class PapersController < ApplicationController
     end
   end
 
+  def approved
+    @paper.approved
+    render nothing: true, status: :ok, json: @paper
+  end
 # PATCH/PUT /papers/1
 # PATCH/PUT /papers/1.json
 #  def update
