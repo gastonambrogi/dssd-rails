@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161024222511) do
+ActiveRecord::Schema.define(version: 20161114193809) do
+
+  create_table "documents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "gdocs_key"
+    t.boolean  "finished",    default: false
+    t.integer  "id_document"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
 
   create_table "papers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
@@ -22,12 +30,26 @@ ActiveRecord::Schema.define(version: 20161024222511) do
     t.string   "presentation"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.integer  "document_id"
+    t.index ["document_id"], name: "index_papers_on_document_id", using: :btree
     t.index ["user_id"], name: "index_papers_on_user_id", using: :btree
   end
 
   create_table "papers_users", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "paper_id", null: false
     t.integer "user_id",  null: false
+  end
+
+  create_table "schedules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "author_name"
+    t.string   "author_lastname"
+    t.string   "paper_title"
+    t.datetime "publication_datetime"
+    t.string   "place"
+    t.integer  "document_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["document_id"], name: "index_schedules_on_document_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -48,4 +70,5 @@ ActiveRecord::Schema.define(version: 20161024222511) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "papers", "documents"
 end
