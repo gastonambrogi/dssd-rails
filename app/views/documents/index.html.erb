@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listado de Papers</h1>
+<% unless @papers_approved.empty? %>
+  <table class="bordered stripped">
+    <thead>
+      <tr>
+        <th data-field="id"> # </th>
+        <th data-field="title"> Titulo </th>
+        <th data-field="theme"> Tema </th>
+        <th > Finalizado? </th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @papers_approved.each do |paper| %>
+        <tr>
+          <td><%= paper.id %></td>
+          <td><%= paper.title %></td>
+          <td><%= paper.theme %></td>
+          <td><%= paper.document.finished ? fa_icon('check') : fa_icon('close') %></td>
+          <td>
+            <% unless paper.document.finished %>
+              <%= link_to fa_icon('edit'), get_doc_url(paper.document.gdocs_key), class: "waves-effect waves-light btn", target: "_blank" %>
+              <%= link_to "Finalizar", document_finished_path(paper.document), class: "waves-effect waves-light btn" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>
+    No han aprobado ningun paper suyo aun.
+  </p>
+<% end %>
+<br>
+<%= link_to 'Volver', root_url, class: 'waves-effect waves-teal btn-flat' %>

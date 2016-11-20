@@ -1,6 +1,7 @@
 <% if current_user %>
 	<h1>Bienvenido, <%= current_user.name %></h1>
-	<%= link_to 'Tus trabajos', controller: 'papers' %>
+	<%= link_to 'Tus trabajos sin revision', papers_url, class: "waves-effect waves-light btn" %>
+	<%= link_to 'Tus trabajos aprobados', documents_url, class: "waves-effect waves-light btn" %>
 <% else %>
 	<h1> Bienvenido! </h1>
 <% end %>
