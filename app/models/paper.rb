@@ -6,12 +6,19 @@ class Paper < ApplicationRecord
 
   validates :title, :summary, :theme, :personal_email, :email, :presentation, presence: true
 
-  scope :without_approbation, lambda { where(document: nil) }
+  scope :not_evaluated, lambda { where(evaluated: false) }
 
-  def approved
+  def approved(gdrive_key)
     if self.document.nil?
-      self.document = Document.create paper: self
+      self.evaluated = true
+      self.document = Document.create(paper: self, gdocs_key: gdrive_key, id_document: self.id)
       self.save
+    end
+  end
+
+  def disapproved
+    unless self.evaluated
+      self.evaluated = false
     end
   end
 end

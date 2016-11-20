@@ -52,3 +52,5 @@ gem 'pry'
 gem 'simple_form'
 gem 'materialize-sass'
 gem "font-awesome-rails"
+
+gem 'google_drive'

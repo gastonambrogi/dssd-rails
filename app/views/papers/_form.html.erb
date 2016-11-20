@@ -9,8 +9,8 @@
     <%= f.label :theme, label:'Tema' %>
     <%= f.input :theme, collection: ['Cloud', 'WS', 'BPM', 'SOA'], as: :radio_buttons, label: false %>
 
-    <%= f.input :personal_email, label: 'Email personal', as: :email %>
-  	<%= f.input :email, label: 'Email de Google', as: :email %>
+    <%= f.input :personal_email, label: 'Email personal', as: :email, input_html: {class: 'validate'} %>
+  	<%= f.input :email, label: 'Email de Google', as: :email, input_html: {class: 'validate'}  %>
 
     <%= f.label :presentation, label: 'Tipo de presentacion'%>
     <%= f.input :presentation, prompt: 'Tipo de presentacion', collection: ['Poster', 'Conferencia'], as: :radio_buttons, label: false  %>
@@ -23,3 +23,17 @@
     <%= link_to 'Volver', papers_path, class: 'waves-effect waves-teal btn-flat' %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $("form").submit(function( event ){
+    $("#paper_email").removeClass("invalid");
+    $("#paper_email").removeClass("valid");
+    if( $("#paper_email")[0].value.match(/([a-zA-Z0-9]+)([\.{1}])?([a-zA-Z0-9]+)\@gmail([\.])com/g) ){
+      return;
+    }else{
+      $("#paper_email").addClass("invalid");
+      event.preventDefault();
+      return false
+    }
+  });
+</script>

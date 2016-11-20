@@ -1,43 +1,47 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listado de Papers</h1>
-
-<table class="bordered stripped">
-  <thead>
-    <tr>
-      <th data-field="title"> Titulo </th>
-      <th data-field="user_id"> Autor </th>
-      <th data-field="summary"> Resumen </th>
-      <th data-field="theme"> Tema </th>
-      <th data-field="personal_email"> Email personal </th>
-      <th data-field="email"> Email de Gmail </th>
-      <th data-field="presentation"> Modo de presentacion </th>
-      <th data-field="created_at"> Creado el dia  </th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @papers.each do |paper| %>
+<% unless @papers.empty? %>
+  <table class="bordered stripped">
+    <thead>
       <tr>
-        <td><%= paper.title %></td>
-        <td><%= paper.user.email %></td>
-        <td><%= paper.summary %></td>
-        <td><%= paper.theme %></td>
-        <td><%= paper.personal_email %></td>
-        <td><%= paper.email %></td>
-        <td><%= paper.presentation %></td>
-        <td><%= paper.created_at.strftime('%e/%m/%y %H:%M') %></td>
-        <td>
-          <%= link_to paper, class: "waves-effect waves-light btn" do %>
-            Ver
-          <% end %>
-        </td>
+        <th data-field="title"> Titulo </th>
+        <th data-field="user_id"> Autor </th>
+        <th data-field="summary"> Resumen </th>
+        <th data-field="theme"> Tema </th>
+        <th data-field="personal_email"> Email personal </th>
+        <th data-field="email"> Email de Gmail </th>
+        <th data-field="presentation"> Modo de presentacion </th>
+        <th data-field="created_at"> Creado el dia  </th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% @papers.each do |paper| %>
+        <tr>
+          <td><%= paper.title %></td>
+          <td><%= paper.user.email %></td>
+          <td><%= paper.summary %></td>
+          <td><%= paper.theme %></td>
+          <td><%= paper.personal_email %></td>
+          <td><%= paper.email %></td>
+          <td><%= paper.presentation %></td>
+          <td><%= paper.created_at.strftime('%e/%m/%y %H:%M') %></td>
+          <td>
+            <%= link_to paper, class: "waves-effect waves-light btn" do %>
+              Ver
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>
+    No ha publicado ningun paper. Cree uno ahora.
+  </p>
+<% end %>
 <br>
 
 <%= link_to 'Crear Paper', new_paper_path, class: "waves-effect waves-light btn" %>
