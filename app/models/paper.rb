@@ -18,7 +18,8 @@ class Paper < ApplicationRecord
 
   def disapproved
     unless self.evaluated
-      self.evaluated = false
+      self.evaluated = true
+      self.save
     end
   end
 end
