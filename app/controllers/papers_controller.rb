@@ -1,5 +1,5 @@
 class PapersController < ApplicationController
-  before_action :set_paper, only: [:show, :edit, :update, :destroy, :approved]
+  before_action :set_paper, only: [:show, :edit, :update, :destroy, :approved, :disapproved]
 
   # GET /papers
   # GET /papers.json
