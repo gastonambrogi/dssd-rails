@@ -1,4 +1,12 @@
 class SchedulerController < ApplicationController
+  layout "scheduler_layout"
+
+  def index
+    @documents = Document.finished.without_schedule
+  end
+  def scheduled
+    render json: Schedule.all
+  end
   def schedule
     document = Document.includes(:schedule, paper: :user).find(params[:id])
     unless document.schedule.present?

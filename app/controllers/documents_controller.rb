@@ -1,4 +1,5 @@
 class DocumentsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @papers_approved = Paper.includes(:document).where(user: current_user, evaluated:true).where.not(document: nil)
   end
@@ -13,7 +14,7 @@ class DocumentsController < ApplicationController
 
     file = drive_session.file_by_id(document.gdocs_key)
 
-  	file.acl.delete(file.acl[1])
+#  	file.acl.delete(file.acl[1])
     redirect_to :documents
   end
 end

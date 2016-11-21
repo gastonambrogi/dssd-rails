@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1> Listado de Documentos sin fecha programada </h1>
+
+<% unless @documents.empty? %>
+  <table class="bordered stripped">
+    <thead>
+      <tr>
+        <th data-field="id"> # </th>
+        <th data-field="title"> Titulo </th>
+        <th data-field="theme"> Tema </th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @documents.each do |document| %>
+        <tr>
+          <td><%= document.paper.id %></td>
+          <td><%= document.paper.title %></td>
+          <td><%= document.paper.theme %></td>
+          <td>
+            <%= link_to "Programar", schedule_path(document), class: "waves-effect waves-light btn", target: "_blank" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>
+    Aun no hay ningun documento pendiente por programar.
+  </p>
+<% end %>
+<br>

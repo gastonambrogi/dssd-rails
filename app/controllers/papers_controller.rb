@@ -1,4 +1,5 @@
 class PapersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_paper, only: [:show, :edit, :update, :destroy, :approved, :disapproved]
 
   # GET /papers
@@ -44,7 +45,7 @@ class PapersController < ApplicationController
 
   def disapproved
     @paper.disapproved
-    render status: :ok, json: @paper
+    render status: :ok, plain: ""
   end
 
   private
@@ -74,7 +75,7 @@ class PapersController < ApplicationController
       # drive_session.files.each {|d| d.delete(permanent:true) }
 
       file = drive_session.upload_from_string(" ", paper.id, :content_type => "text/plain")
-      file.acl.push({ type: "user", email_address: paper.email, role: "writer" }) #, {sendNotificationEmails: false}
+      file.acl.push({ type: "user", email_address: paper.email, role: "writer" }) #, {sendNotificationEmails: false}, {emailMessage: "El comite cientifico a aprobado su paper. Complete su documento en no mas de una pagina y luego marquelo como finalizado aqui: #{document_finished_url}"}
       file
     end
 end

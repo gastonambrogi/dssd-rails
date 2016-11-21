@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DssdRails</title>
+    <%= csrf_meta_tags %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body>
+    <nav class="red darken-4" role="navigation">
+      <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">DSSD - Grupo 4</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>
