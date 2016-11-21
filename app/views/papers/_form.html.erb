@@ -4,7 +4,7 @@
   <div class="form-inputs">
   <div class="row">
   	<%= f.input :title, label: 'Titulo' %> </div>
-  	<%= f.input :summary, label: 'Descripción', as: :text, input_html: { maxlength: 200, class:'materialize-textarea'} %>
+  	<%= f.input :summary, label: 'Resumen', as: :text, input_html: { maxlength: 200, class:'materialize-textarea'} %>
 
     <%= f.label :theme, label:'Tema' %>
     <%= f.input :theme, collection: ['Cloud', 'WS', 'BPM', 'SOA'], as: :radio_buttons, label: false %>

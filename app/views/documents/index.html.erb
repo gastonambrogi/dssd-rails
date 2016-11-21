@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listado de Papers</h1>
+<h1>Listado de Papers Aprobados por el comite</h1>
+
 <% unless @papers_approved.empty? %>
   <table class="bordered stripped">
     <thead>
@@ -23,7 +24,7 @@
           <td>
             <% unless paper.document.finished %>
               <%= link_to fa_icon('edit'), get_doc_url(paper.document.gdocs_key), class: "waves-effect waves-light btn", target: "_blank" %>
-              <%= link_to "Finalizar", document_finished_path(paper.document), class: "waves-effect waves-light btn" %>
+              <%= link_to "Finalizar", document_finished_path(paper.document), confirm: 'Esta seguro?', class: "waves-effect waves-light btn" %>
             <% end %>
           </td>
         </tr>
@@ -32,7 +33,7 @@
   </table>
 <% else %>
   <p>
-    No han aprobado ningun paper suyo aun.
+    Aun no han aprobado ningun paper presentado por usted.
   </p>
 <% end %>
 <br>

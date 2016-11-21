@@ -1,12 +1,13 @@
 class Paper < ApplicationRecord
   belongs_to :user
-  belongs_to :document, optional: true
+  belongs_to :document, optional: true, dependent: :destroy
 
   has_and_belongs_to_many :users
 
   validates :title, :summary, :theme, :personal_email, :email, :presentation, presence: true
 
   scope :not_evaluated, lambda { where(evaluated: false) }
+  scope :evaluated, lambda { where(evaluated: true) }
 
   def approved(gdrive_key)
     if self.document.nil?

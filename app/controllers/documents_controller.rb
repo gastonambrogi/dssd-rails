@@ -4,7 +4,16 @@ class DocumentsController < ApplicationController
   end
 
   def finished
-    Document.find(params[:id]).finish_edit
+    document=Document.find(params[:id])
+    document.finish_edit
+    drive_session = GoogleDrive::Session.from_service_account_key(
+      "dssd-rails-grupo4-f789d79057b7.json",
+      [ "https://www.googleapis.com/auth/drive", "https://spreadsheets.google.com/feeds/", ]
+    )
+
+    file = drive_session.file_by_id(document.gdocs_key)
+
+  	file.acl.delete(file.acl[1])
     redirect_to :documents
   end
 end

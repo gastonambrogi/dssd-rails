@@ -73,7 +73,7 @@ class PapersController < ApplicationController
       # drive_session.files.each {|d| d.delete(permanent:true) }
 
       file = drive_session.upload_from_string(" ", paper.id, :content_type => "text/plain")
-      file.acl.push({ type: "user", email_address: paper.email, role: "writer" })
+      file.acl.push({ type: "user", email_address: paper.email, role: "writer" }) #, {sendNotificationEmails: false}
       file
     end
 end
