@@ -39,7 +39,7 @@ class PapersController < ApplicationController
   def approved
     file = create_drive_document @paper
     @paper.approved file.id
-    render status: :ok, text: file.human_url
+    render status: :ok, plain: file.human_url
   end
 
   def disapproved
@@ -70,6 +70,7 @@ class PapersController < ApplicationController
           "https://spreadsheets.google.com/feeds/",
         ]
       )
+
       # drive_session.files.each {|d| d.delete(permanent:true) }
 
       file = drive_session.upload_from_string(" ", paper.id, :content_type => "text/plain")
