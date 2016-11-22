@@ -45,7 +45,7 @@ class PapersController < ApplicationController
 
   def disapproved
     @paper.disapproved
-    render status: :ok, plain: ""
+    render status: :ok, plain: "Paper #{@paper.id} Desaprobado"
   end
 
   private
