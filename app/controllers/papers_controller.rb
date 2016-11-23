@@ -38,9 +38,13 @@ class PapersController < ApplicationController
   end
 
   def approved
-    file = create_drive_document @paper
-    @paper.approved file.id
-    render status: :ok, plain: file.human_url
+    unless @paper.has_document?
+      file = create_drive_document @paper
+      @paper.approved file.id
+      render status: :ok, plain: file.human_url
+    else
+      render status: :ok, plain: @paper.document.gdocs_url
+    end
   end
 
   def disapproved
@@ -71,10 +75,14 @@ class PapersController < ApplicationController
           "https://spreadsheets.google.com/feeds/",
         ]
       )
+      file_title = paper.id
+      unless drive_session.files.detect{|f| f.title == paper.id }.nil?
+        file_title="#{file_title}_#{paper.title}"
+      end
 
       # drive_session.files.each {|d| d.delete(permanent:true) }
 
-      file = drive_session.upload_from_string(" ", paper.id, :content_type => "text/plain")
+      file = drive_session.upload_from_string(" ", file_title, :content_type => "text/plain")
       file.acl.push({ type: "user", email_address: paper.email, role: "writer" }) #, {sendNotificationEmails: false}, {emailMessage: "El comite cientifico a aprobado su paper. Complete su documento en no mas de una pagina y luego marquelo como finalizado aqui: #{document_finished_url}"}
       file
     end

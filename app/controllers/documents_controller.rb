@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :authenticate_user!
+  
   def index
     @papers_approved = Paper.includes(:document).where(user: current_user, evaluated:true).where.not(document: nil)
   end

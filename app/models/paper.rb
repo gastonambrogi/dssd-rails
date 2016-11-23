@@ -23,4 +23,8 @@ class Paper < ApplicationRecord
       self.save
     end
   end
+
+  def has_document?
+    !self.document.nil?
+  end
 end
