@@ -21,7 +21,7 @@
 
 `bundle install`
 
-* Database creation
+* Database creation (update ``config/database.yml`` with correct db user and pass )
 
 `rake db:create`
 
@@ -36,7 +36,9 @@
 `rails s`
 
 * Admin 
+
 >user: admin@admin.com
+
 >pass: admindssd
 
 * ...
