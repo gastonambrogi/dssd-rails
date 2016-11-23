@@ -20,7 +20,7 @@
           <td><%= document.paper.title %></td>
           <td><%= document.paper.theme %></td>
           <td>
-            <%= link_to "Programar", schedule_path(document), class: "waves-effect waves-light btn", target: "_blank" %>
+            <%= link_to "Programar", schedule_path(document), remote: true, class: "waves-effect waves-light btn", target: "_blank" %>
           </td>
         </tr>
       <% end %>
@@ -32,3 +32,9 @@
   </p>
 <% end %>
 <br>
+<script type="text/javascript">
+  $("a[data-remote]").on("ajax:success", function(e,data){
+    var d=(new Date(data.publication_datetime));
+    $(this).parent('td').html("Programado para el dia "+ d.getDate() +"/"+d.getMonth()+"/"+d.getFullYear()+" a las "+ d.getHours()+":"+d.getMinutes()+" en el "+data.place+".");
+  })
+</script>
