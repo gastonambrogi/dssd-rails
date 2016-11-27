@@ -24,6 +24,13 @@ class Paper < ApplicationRecord
     end
   end
 
+  def mark_as_revised
+    self.update revised: true
+  end
+
+  def is_revised?
+    self.revised
+  end
   def has_document?
     !self.document.nil?
   end

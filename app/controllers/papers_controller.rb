@@ -1,6 +1,6 @@
 class PapersController < ApplicationController
   before_action :authenticate_user!, except: [:approved, :disapproved]
-  before_action :set_paper, only: [:show, :edit, :update, :destroy, :approved, :disapproved]
+  before_action :set_paper, only: [:show, :edit, :update, :destroy, :approved, :disapproved, :revised]
 
   # GET /papers
   # GET /papers.json
@@ -52,6 +52,10 @@ class PapersController < ApplicationController
     render status: :ok, plain: "Paper #{@paper.id} Desaprobado"
   end
 
+  def revised
+    @paper.mark_as_revised
+    render json: @paper
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_paper
