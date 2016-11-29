@@ -32,7 +32,7 @@ class SchedulerController < ApplicationController
   end
 
   def generate_index_as_pdf
-    index_entries = Schedule.all.map { |s| s.to_index_entry }.join("\n\n")
+    index_entries = Schedule.all.map.with_index { |s, index| s.to_index_entry(index+1) }.join("\n\n")
 
     drive_session = GoogleDrive::Session.from_service_account_key(
       "dssd-rails-grupo4-f789d79057b7.json",

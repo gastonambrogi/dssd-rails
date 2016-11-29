@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1> Listado de Documentos Compartidos </h1>
+
+<% unless @documents.empty? %>
+  <table class="bordered stripped">
+    <thead>
+      <tr>
+        <th data-field="id"> # </th>
+        <th data-field="title"> Titulo </th>
+        <th data-field="theme"> Tema </th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @documents.each do |document| %>
+        <tr>
+          <td><%= document.paper.id %></td>
+          <td><%= document.paper.title %></td>
+          <td><%= document.paper.theme %></td>
+          <td>
+            <%= link_to "Dejar de compartir", document_stop_sharing_path(document), remote: true, class: "waves-effect waves-light btn", target: "_blank" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>
+    No hay documentos compartidos.
+  </p>
+<% end %>
+<br>
+<script type="text/javascript">
+  $("a[data-remote]").on("ajax:success", function(e,data){
+    $(this).parent('td').html("");
+  })
+</script>

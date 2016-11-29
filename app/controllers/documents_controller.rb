@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:shareds, :stop_sharing]
 
   def index
     @papers_approved = Paper.includes(:document).where(user: current_user, evaluated:true).where.not(document: nil)
@@ -12,8 +12,14 @@ class DocumentsController < ApplicationController
     redirect_to :documents
   end
 
+  def shareds
+    @documents = Document.finished.shared.without_schedule
+    render layout: "scheduler_layout"
+  end
+
   def stop_sharing
     document=Document.find(params[:id])
+    document.stop_sharing
 
     drive_session = GoogleDrive::Session.from_service_account_key(
       "dssd-rails-grupo4-f789d79057b7.json",

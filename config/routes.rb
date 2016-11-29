@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'scheduled' => 'scheduler#scheduled', as: :scheduled
 
   get 'documents' => 'documents#index', as: :documents
+  get 'documents/shareds' => 'documents#shareds', as: :document_shareds
   get 'documents/:id/finish' => 'documents#finished', as: :document_finished
   get 'documents/:id/stop_sharing' => 'documents#stop_sharing', as: :document_stop_sharing
 
