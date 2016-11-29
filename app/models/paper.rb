@@ -7,6 +7,7 @@ class Paper < ApplicationRecord
   validates :title, :summary, :theme, :personal_email, :email, :presentation, presence: true
 
   scope :not_evaluated, lambda { where(evaluated: false) }
+  scope :unrevised, lambda { where(revised: false) }
   scope :evaluated, lambda { where(evaluated: true) }
 
   def approved(gdrive_key)
@@ -23,7 +24,7 @@ class Paper < ApplicationRecord
       self.save
     end
   end
-  
+
   def mark_as_revised
     self.update revised: true
   end

@@ -37,6 +37,12 @@ class PapersController < ApplicationController
     end
   end
 
+  def take_one_unrevised
+    paper = Paper.unrevised.first
+    paper.mark_as_revised unless paper.nil?
+    render json: paper
+  end
+
   def approved
     unless @paper.has_document?
       file = create_drive_document @paper
@@ -56,6 +62,7 @@ class PapersController < ApplicationController
     @paper.mark_as_revised
     render json: @paper
   end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_paper
@@ -83,11 +90,11 @@ class PapersController < ApplicationController
       unless drive_session.files.detect{|f| f.title == paper.id.to_s }.nil?
         file_title="#{file_title}_#{paper.title}"
       end
-      
+
       # drive_session.files.each {|d| d.delete(permanent:true) }
 
       file = drive_session.upload_from_string(" ", file_title, :content_type => "text/plain")
-      file.acl.push({ type: "user", email_address: paper.email, role: "writer" }) #, {sendNotificationEmails: false}, {emailMessage: "El comite cientifico a aprobado su paper. Complete su documento en no mas de una pagina y luego marquelo como finalizado aqui: #{document_finished_url}"}
+      file.acl.push({ type: "user", email_address: paper.email, role: "writer" }, {send_notification_email: false}) #
       file
     end
 end
