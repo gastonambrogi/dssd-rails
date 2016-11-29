@@ -25,7 +25,7 @@ class DocumentsController < ApplicationController
     role_writer_index = file.acl.each.find_index { |p| p.role == 'writer' }
 
   	file.acl.delete(file.acl[role_writer_index])
-    
+
     file.acl.push({ type: "user", email_address: "grupo4.dssd@gmail.com", role: "owner" }, { transfer_ownership:true })
 
     render json: document

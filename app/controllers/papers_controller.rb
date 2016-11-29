@@ -1,5 +1,5 @@
 class PapersController < ApplicationController
-  before_action :authenticate_user!, except: [:approved, :disapproved]
+  before_action :authenticate_user!, except: [:approved, :disapproved, :take_one_unrevised, :revised]
   before_action :set_paper, only: [:show, :edit, :update, :destroy, :approved, :disapproved, :revised]
 
   # GET /papers
