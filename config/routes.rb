@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get 'schedule' => 'scheduler#index', as: :scheduler_index
   get 'schedule/:id' => 'scheduler#schedule', as: :schedule
   get 'scheduled' => 'scheduler#scheduled', as: :scheduled
+  
+  get 'generate_index' => 'scheduler#generate_index', as: :generate_index
 
   get 'documents' => 'documents#index', as: :documents
   get 'documents/:id/finish' => 'documents#finished', as: :document_finished

@@ -23,7 +23,7 @@ class Paper < ApplicationRecord
       self.save
     end
   end
-
+  
   def mark_as_revised
     self.update revised: true
   end

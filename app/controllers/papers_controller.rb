@@ -80,10 +80,10 @@ class PapersController < ApplicationController
         ]
       )
       file_title = paper.id
-      unless drive_session.files.detect{|f| f.title == paper.id }.nil?
+      unless drive_session.files.detect{|f| f.title == paper.id.to_s }.nil?
         file_title="#{file_title}_#{paper.title}"
       end
-
+      
       # drive_session.files.each {|d| d.delete(permanent:true) }
 
       file = drive_session.upload_from_string(" ", file_title, :content_type => "text/plain")
