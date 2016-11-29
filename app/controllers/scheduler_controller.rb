@@ -31,6 +31,31 @@ class SchedulerController < ApplicationController
     render json: schedule
   end
 
+  def generate_index_as_pdf
+    pdf = Prawn::Document.new
+    Schedule.all.map { |s| pdf.text("#{s.to_index_entry} \n\n") }
+
+    drive_session = GoogleDrive::Session.from_service_account_key(
+      "dssd-rails-grupo4-f789d79057b7.json",
+      [
+        "https://www.googleapis.com/auth/drive",
+        "https://spreadsheets.google.com/feeds/",
+      ]
+    )
+
+    # drive_session.files.each {|d| d.delete(permanent:true) }
+
+    file_name="indice.pdf"
+
+    file = drive_session.upload_from_string(pdf.render, file_name, content_type: 'application/pdf')
+
+    file.acl.push({ type: "user", email_address: "grupo4.dssd@gmail.com", role: "owner" }, { transfer_ownership:true })
+
+    string_io=StringIO.new
+    file.export_to_io(string_io, 'application/pdf')
+    send_data string_io.string, filename: file_name, type: :pdf#, disposition: :inline
+  end
+
   def generate_index
     index_entries = Schedule.all.map { |s| s.to_index_entry }.join("\n")
 

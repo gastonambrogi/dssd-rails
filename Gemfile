@@ -56,3 +56,4 @@ gem "font-awesome-rails"
 gem 'google_drive'
 
 gem 'faker'
+gem 'prawn'
